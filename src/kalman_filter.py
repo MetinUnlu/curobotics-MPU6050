@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+'''
+
+The Kalman Filter Implementation for MPU-6050 DOF IMU is by Philip Salmony [pms67@cam.ac.uk],
+For his main code refer to pms67/Attitude-Estimation GitHub repository.
+
+This code is implemented to ROS system by MetinUnlu for ROS-MQTT-IMU sensor reading.
+For more details in ROS configuration please refer to MetinUnlu/curobotics-MPU6050 GitHub repository.
+
+'''
 
 import rospy
 import math
@@ -9,10 +18,7 @@ from datetime import datetime
 from math import sin, cos, tan, pi
 import numpy as np
 
-df=pd.DataFrame(columns=["accx","accy","accz","gyrox","gyroy","gyroz"])
-
 IMU_FRAME=None
-dps_to_rps=0.017453293
 
 C = np.array([[1, 0, 0, 0], [0, 0, 1, 0]])
 P = np.eye(4)
@@ -119,14 +125,6 @@ def stream(data):
 	# Display results
 	print("Phi: " + str(round(phi_hat * 180.0 / pi, 1)) + " Theta: " + str(round(theta_hat * 180.0 / pi, 1)))
 
-
-
-
-
-
-
-  
-  
 
 
 def streamer():
